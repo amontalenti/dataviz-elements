@@ -3,6 +3,7 @@ Flask
 Flask-Script
 # data analysis
 pandas
+pymongo
 # visuals
 vincent
 # dev tools

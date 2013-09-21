@@ -1,6 +1,6 @@
-==============================
-Elements of Data Visualization
-==============================
+====================
+Elements of Data Viz
+====================
 
 Andrew Montalenti, CTO
 
@@ -106,6 +106,16 @@ Three people:
 * Mike Bostock
 * Benjamin Fry
 
+Edward Tufte
+============
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/et_dash.jpg
+        :width: 80%
+        :align: center
+
+
 Tufte: Do Whatever It Takes
 ===========================
 
@@ -143,6 +153,103 @@ Fry: It's a Process
 
 multi-disciplanary process, feedback loops, iteration
 
+Chart Types (1)
+===============
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/elements_01.png
+    .. image:: ./_static/elements_05.png
+    .. image:: ./_static/elements_06.png
+
+
+Chart Types (2)
+===============
+
+Paradox of choice?
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/elements_02.png
+    .. image:: ./_static/elements_03.png
+    .. image:: ./_static/elements_04.png
+
+Encoding Guide (1)
+==================
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/viz_elements.png
+        :width: 80%
+        :align: center
+
+
+Encoding Guide (2)
+==================
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/elements_table.png
+        :width: 80%
+        :align: center
+
+Data
+====
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/data_set.png
+        :width: 80%
+        :align: center
+
+Documents
+=========
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/data_values.png
+        :width: 80%
+        :align: center
+
+Data-Driven Documents
+=====================
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/data_highlights.png
+        :width: 80%
+        :align: center
+
+Dense Displays
+==============
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/more_data.png
+        :width: 80%
+        :align: center
+
+
+How to iterate?
+===============
+
+    .. image:: ./_static/process_03.png
+        :width: 100%
+        :align: center
+
+Tools for everything, but no **dataviz REPL**.
+
+Or is there? Enter IPython Notebook, Pandas, and the web.
+
+Demo Time!
+=========
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/authority_report.png
+        :width: 80%
+        :align: center
+
 My Tools
 ========
 
@@ -154,22 +261,36 @@ My Tools
     filter      ipython notebook, listcomps, pandas
     mine        pandas
     represent   matplotlib, vincent, d3
-    refine      d3
+    refine      d3, chrome inspector
     interact    d3
     =========== ===================================
 
-Contact Us
+"Big" Data
 ==========
 
-Get in touch. We're hiring :)
+.. rst-class:: spaced
 
-* http://parse.ly
-* http://twitter.com/parsely
+    .. image:: ./_static/big_data_viz.png
+        :width: 80%
+        :align: center
 
-And me:
+Type Into Browser
+=================
 
-* http://pixelmonkey.org
-* http://twitter.com/amontalenti
+.. rst-class:: bigger
+
+    **Links:**
+
+    - bit.ly/becamp2013
+    - parse.ly
+
+    **Contacts:**
+
+    - @amontalenti
+    - @parsely
+
+    **Questions?**
+
 
 .. ifnotslides::
 
@@ -192,4 +313,5 @@ And me:
         <style>
         table { line-height: 1.7em; }
         td:first-child { background-color: #eee; font-weight: bold; }
+        .bigger { font-size: 1.8em; line-height: 0.8em; }
         </style>
