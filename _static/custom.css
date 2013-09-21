@@ -1,0 +1,17 @@
+.slide h2 {
+    position: static;
+}
+.slide p {
+    margin-top: 40px;
+}
+.slide img {
+    padding: 15px;
+}
+
+.logo {
+    margin-top: 100px;
+}
+
+.spaced {
+    margin-top: 30px;
+}
