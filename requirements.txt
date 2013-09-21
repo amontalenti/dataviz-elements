@@ -1,0 +1,18 @@
+# web
+Flask
+Flask-Script
+# data analysis
+pandas
+# visuals
+vincent
+# dev tools
+ipython
+tornado
+pyzmq
+livereload
+# build the slides / docs
+Sphinx
+Hieroglyph
+watchdog
+argcomplete
+selenium
