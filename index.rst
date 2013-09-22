@@ -239,7 +239,7 @@ How to iterate?
 
 Tools for everything, but no **dataviz REPL**.
 
-Or is there? Enter IPython Notebook, Pandas, and the web.
+Or is there? Enter IPython Notebook, Pandas, the web.
 
 Demo Time!
 =========
