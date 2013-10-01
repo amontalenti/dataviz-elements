@@ -35,61 +35,59 @@ jQuery(function() {
     //var data  = d3.range(50).map(function(x) { return x*x });
     //var data  = d3.range(30).map(function(x) { return x*x*x });
 
-    // top referring sources
-    var data, labels, width, height;
-    data = [13279482, 14253116, 16001234, 18423838, 28014659, 39884685, 41323947, 51386513, 73492651, 235993615];
-    labels = ['bing', 'drudgereport', 'msn', 'news sites*', 'twitter', 'parse.ly sites*', 'yahoo', 'outbrain', 'facebook', 'google sites*'];
+    data = [25912706, 166264955, 348730403, 370346256, 923561987];
+    labels = ['rss readers', 'aggregators', 'social networks', 'other news sites', 'search engines'];
     data.reverse();
     labels.reverse();
     width = 500;
-    height = 200;
+    height = 100;
+    hbar(data, labels, width, height, "#top_channels");
 
-    hbar(data, labels, width, height, "#top_10_sources");
-
-    data = [422972, 466632, 469748, 536714, 583382, 599269, 608563, 648672, 704319, 816641, 830462, 872849, 1017778, 1031327, 1094067, 1628052, 2011511, 4929414, 7449484, 8682834, 8761231, 10268467, 13279482, 14253116, 16001234, 18423838, 28014659, 39884685, 41323947, 51386513];
-    labels = ['go', 'bloglovin', 'theoldreader', 'blogspot', 'wikipedia.org', 'zemanta', 'disqus', 'tumblr', 'linkedin', 'realclearpolitics', 'pulse.me', 'taboola', 'tinyurl', 'ask', 'buzzfeed', 'digg', 'fark', 'aol', 'feedly', 'reddit', 'stumbleupon', 'pinterest', 'bing', 'drudgereport', 'msn', 'news sites*', 'twitter', 'parse.ly sites*', 'yahoo', 'outbrain'];
+    data = [325879, 397614, 1085120, 1693870, 1805178, 2015816, 2038865, 2056517, 2606303, 3227669, 3251159, 5030101, 6088058, 16532830, 25912706, 26245422, 29326700, 40288719, 45642858, 64834854, 84143300, 129886773, 229494200, 370346256, 744383583];
+    labels = ['slashdot.org', 'duckduckgo', 'go', 'blogspot', 'wikipedia.org', 'linkedin', 'juno', 'tumblr', 'realclearpolitics', 'buzzfeed', 'ask', 'digg', 'fark', 'aol', 'rss readers*', 'reddit', 'pinterest', 'drudgereport', 'bing', 'msn', 'twitter', 'yahoo', 'facebook', 'news sites*', 'google sites*'];
     data.reverse();
     labels.reverse();
     width = 500;
     height = 600;
 
-    hbar(data, labels, width, height, "#top_30_sources");
+    hbar(data, labels, width, height, "#top_25_sources");
 
-    data = [73492651, 28014659, 10268467, 704319, 648672]
+    data = [325879, 397614, 1085120, 1693870, 1805178, 2015816, 2038865, 2056517, 2606303, 3227669, 3251159, 5030101, 6088058, 16532830, 25912706, 26245422, 29326700, 40288719, 45642858, 64834854, 84143300, 129886773, 370346256];
+    labels = ['slashdot.org', 'duckduckgo', 'go', 'blogspot', 'wikipedia.org', 'linkedin', 'juno', 'tumblr', 'realclearpolitics', 'buzzfeed', 'ask', 'digg', 'fark', 'aol', 'rss readers*', 'reddit', 'pinterest', 'drudgereport', 'bing', 'msn', 'twitter', 'yahoo', 'news sites*'];
+    data.reverse();
+    labels.reverse();
+    width = 500;
+    height = 460;
+
+    hbar(data, labels, width, height, "#top_sources_scaled");
+
+    data = [229494200, 84143300, 29326700, 2015816, 2056517];
     labels = ['facebook', 'twitter', 'pinterest', 'linkedin', 'tumblr'];
     width = 500;
     height = 100;
 
     hbar(data, labels, width, height, "#social_networks");
 
-    data = [235993615, 41323947, 13279482, 1031327];
-    labels = ['google sites*', 'yahoo', 'bing', 'ask'];
+    data = [744383583, 129886773, 45642858, 3251159, 397614];
+    labels = ['google sites*', 'yahoo', 'bing', 'ask', 'duckduckgo'];
     width = 500;
     height = 100;
 
     hbar(data, labels, width, height, "#search_engines");
 
-    data = [7449484, 830462, 469748, 466632, 400006];
-    labels = ['feedly', 'pulse.me', 'theoldreader', 'bloglovin', 'netvibes'];
+    data = [20263655, 2542520, 1117154, 1040473, 948904];
+    labels = ['feedly', 'pulse.me', 'bloglovin', 'netvibes', 'theoldreader'];
     width = 500;
     height = 100;
 
     hbar(data, labels, width, height, "#tools");
 
-    data = [51386513, 8761231, 872849, 608563, 599269];
-    labels = ['outbrain', 'stumbleupon', 'taboola', 'disqus', 'zemanta'];
+    data = [64834854, 40288719, 26245422, 16532830, 6088058, 5030101, 3227669, 2606303, 1085120, 325879];
+    labels = ['msn', 'drudgereport', 'reddit', 'aol', 'fark', 'digg', 'buzzfeed', 'realclearpolitics', 'go', 'slashdot.org'];
     width = 500;
-    height = 100;
-
-    hbar(data, labels, width, height, "#discovery");
-
-    data = [16001234, 14253116, 8682834, 4929414, 2011511, 1628052, 816641];
-    labels = ['msn', 'drudgereport', 'reddit', 'aol', 'fark', 'digg', 'realclearpolitics'];
-    width = 500;
-    height = 150;
+    height = 200;
 
     hbar(data, labels, width, height, "#aggregators");
-
 }); // jQuery
 
 function hbar(data, labels, width, height, elementId) {
@@ -102,6 +100,9 @@ function hbar(data, labels, width, height, elementId) {
     var x  = d3.scale.linear().domain([0, d3.max(data)]).range([0, w - offset]);
     var y = d3.scale.ordinal().domain(data).rangeBands([0, h])
     var pct = d3.scale.linear().domain([0, d3.max(data)]).range([0.3, 1])
+
+    var ALLDOMAINS_TOTAL = 2033886400;
+    var normed = d3.scale.linear().domain([0, ALLDOMAINS_TOTAL]).range([0, 1])
 
     var chart = d3.select(elementId)
         .append("svg:svg")
@@ -140,7 +141,7 @@ function hbar(data, labels, width, height, elementId) {
         .attr("y", 0)
         .attr("dy", -3)
         .attr("text-anchor", "middle")
-        .text(function(d) { return d / 1000000 + "m"; } );
+        .text(function(d) { return d3.format(".1%")(normed(d)); } );
 
     chart.selectAll("text.label")
         .data(labels)
@@ -156,18 +157,18 @@ function hbar(data, labels, width, height, elementId) {
 </head>
 <body>
   <div style="margin-top: 30px; margin-left: 30px; ">
-    <h1>Top 10 Traffic Sources</h1>
-    <div id="top_10_sources"></div>
-    <h1>Top 30, Excluding Google and Facebook</h1>
-    <div id="top_30_sources"></div>
+    <h1>Top Channels</h1>
+    <div id="top_channels"></div>
+    <h1>Top 25 Sources</h1>
+    <div id="top_25_sources"></div>
+    <h1>Top Sources, excluding Google & Facebook</h1>
+    <div id="top_sources_scaled"></div>
     <h1>Social Networks</h1>
     <div id="social_networks"></div>
     <h1>Search Engines</h1>
     <div id="search_engines"></div>
     <h1>RSS Readers</h1>
     <div id="tools"></div>
-    <h1>Content Discovery</h1>
-    <div id="discovery"></div>
     <h1>Aggregators</h1>
     <div id="aggregators"></div>
   </div>  
