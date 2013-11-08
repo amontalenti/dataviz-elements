@@ -12069,7 +12069,8 @@ emmet.exec(function(require, _) {
  * Filter for escaping unsafe XML characters: <, >, &
  * @author Sergey Chikuyonok (serge.che@gmail.com)
  * @link http://chikuyonok.ru
- */emmet.exec(function(require, _) {
+ */
+emmet.exec(function(require, _) {
 	var charMap = {
 		'<': '&lt;',
 		'>': '&gt;',
@@ -12555,7 +12556,8 @@ emmet.exec(function(require, _) {
 		
 		return tree;
 	});
-});/**
+});
+/**
  * Trim filter: removes characters at the beginning of the text
  * content that indicates lists: numbers, #, *, -, etc.
  * 
@@ -12591,7 +12593,8 @@ emmet.exec(function(require, _) {
 		var re = new RegExp(require('preferences').get('filter.trimRegexp'));
 		return process(tree, re);
 	});
-});/**
+});
+/**
  * Filter for trimming "select" attributes from some tags that contains
  * child elements
  * @author Sergey Chikuyonok (serge.che@gmail.com)
@@ -12601,7 +12604,8 @@ emmet.exec(function(require, _) {
  * @memberOf __xslFilterDefine
  * @param {Function} require
  * @param {Underscore} _
- */emmet.exec(function(require, _) {
+ */
+emmet.exec(function(require, _) {
 	var tags = {
 		'xsl:variable': 1,
 		'xsl:with-param': 1
@@ -13536,7 +13540,7 @@ emmet.exec(function(require, _) {
 			"det": "details",
 			"cmd": "command",
 			"doc": "html>(head>meta[charset=UTF-8]+title{${1:Document}})+body",
-			"bootstrap": "html>(head>meta[charset=UTF-8]+title{${1:Bootstrapped}}+link[href=\"css/lib/bootstrap.css\"]+link[href=\"css/lib/bootstrap-responsive.css\"]+script[src=\"js/lib/bootstrap.js\"]+script[src=\"js/lib/d3.js\"]+script[src=\"js/lib/jquery.js\"])+body>div.container",
+			"bootstrap": "html>(head>meta[charset=UTF-8]+title{${1:Bootstrapped}}+link[href=\"css/lib/bootstrap.css\"]+link[href=\"css/lib/bootstrap-responsive.css\"]+script[src=\"js/lib/jquery.js\"]+script[src=\"js/lib/bootstrap.js\"]+script[src=\"js/lib/d3.v3.js\"]+script[src=\"js/lib/nv.d3.js\"]+script[src=\"js/lib/vega.js\"])+body>div#container+script{var data = [];}",
 			"doc4": "html>(head>meta[http-equiv=\"Content-Type\" content=\"text/html;charset=${charset}\"]+title{${1:Document}})",
 
 			"html:4t":  "!!!4t+doc4[lang=${lang}]",
