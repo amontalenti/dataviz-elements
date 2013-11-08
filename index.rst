@@ -296,7 +296,6 @@ d3
 * svg
 * scales
 * axes
-* data
 * joins
 
 Data
@@ -334,25 +333,33 @@ d3 scales
 
     var data = [1, 2, 3, 4, 5];
 
-    var width = 500;
+    var width = 200;
     var height = 200;
 
     var x = d3.scale
-                .linear()
-                .domain([0, d3.max(data)])
-                .range([0, width]);
-    var y = d3.scale
                 .ordinal()
                 .domain(data)
-                .rangeBands([0, height]);
+                .rangeBands([0, width]);
+    var y = d3.scale
+                .linear()
+                .domain([0, d3.max(data)])
+                .range([0, height]);    
+    var pct = d3.scale
+                .linear()
+                .domain([0, d3.max(data)])
+                .range([0.4, 1]);
 
 d3 scaling
 ==========
 
 .. sourcecode:: javascript
 
-    x(4.5) // -> 450
-    y.rangeBand() // -> 40
+    y(1.7) // -> 68px
+    pct(1.7) // -> 60.4%
+    y(4.5) // -> 180px
+    pct(4.5) // -> 94%
+    x(5) // -> 160px
+    x.rangeBand() // -> 40px
 
 d3 drawing
 ==========
@@ -362,6 +369,7 @@ d3 drawing
     var chart = d3.select("#container")
       .append("svg")
         .attr("class", "chart")
+        .attr("fill", "steelblue")
         .attr("width", width)
         .attr("height", height)
       .append("svg:g");
@@ -372,8 +380,10 @@ d3 drawing
             .append("svg:rect")
                 .attr("x", x)
                 .attr("height", y)
-                .attr("y", function(d) { return height - y(d); })
-                .attr("width", y.rangeBand());
+                .attr("opacity", pct)
+                .attr("y", function(d, i) { return height - y(d); })
+                .attr("width", x.rangeBand());
+
 
 Prototyping with d3
 ===================
@@ -478,6 +488,76 @@ What is Vega?
     :width: 60%
     :align: center
 
+Vega bar example (1)
+====================
+
+.. sourcecode:: javascript
+
+    var spec = {
+        "width": 200,
+        "height": 200,
+        "data": [
+            {
+                "name": "table",
+                "values": [
+                    {"x":"A", "y":1}, {"x":"B", "y":2}, {"x":"C", "y":3},
+                    {"x":"D", "y":4}, {"x":"E", "y":5}
+                ]
+            }
+        ],
+        // ...
+
+Vega bar example (2)
+====================
+
+.. sourcecode:: javascript
+
+        "scales": [
+            {"name": "x", 
+             "type": "ordinal", 
+             "range": "width", 
+             "domain": {"data":"table", "field":"data.x"} },
+            {"name": "y", 
+             "range": "height", 
+             "nice": true, 
+             "domain": {"data": "table", "field": "data.y"} },
+            {"name": "pct", 
+             "range": [0.4, 1], 
+             "nice": true, 
+             "domain": {"data": "table", "field": "data.y"} }
+        ],
+        // ...
+
+Vega bar example (3)
+====================
+
+.. sourcecode:: javascript
+
+    "marks": [
+        {
+            "type": "rect",
+            "from": {"data": "table"},
+            "properties": {
+                "enter": {
+                    "x": {"scale": "x", "field": "data.x"},
+                    "width": {"scale":"x", "band": true, "offset": -1},
+                    "y": {"scale": "y", "field": "data.y"},
+                    "y2": {"scale": "y", "value": 0},
+                    "opacity": {"scale": "pct", "field": "data.y"}
+                },
+                "update": { 
+                    "fill": {"value": "steelblue"} 
+                }
+            }
+        }
+    ]
+
+How does Vega work?
+===================
+
+* vega runtime generates d3 instructions
+* for offline mode, use vg2png/vg2svg
+
 What is Vincent?
 ================
 
@@ -500,11 +580,17 @@ vincent
 * declarative visualizations
 * HTML canvas
 
-How does Vega work?
-===================
+vincent example
+===============
 
-* vega runtime generates d3 instructions
-* for offline mode, use vg2png/vg2svg
+.. sourcecode:: python
+
+    site_stack = vincent.StackedArea(df)
+    site_stack.axis_titles(x='Date', y='Pageviews')
+    site_stack.legend(title='Sites')
+    site_stack.display()
+
+.. figure:: /_static/vincent_stacked.png
 
 My Tools
 ========
