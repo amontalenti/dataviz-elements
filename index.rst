@@ -118,6 +118,14 @@ Parse.ly careers
     :width: 70%
     :align: center
 
+Agenda
+======
+
+* Data Visualization Theory
+* **webrepl**: d3 for browser dataviz
+* **pyrepl**: Pandas for data mining
+* **vizrepl**: IPython Notebook 2.0-dev
+
 Data Visualization Theory
 =========================
 
@@ -214,6 +222,83 @@ Encoding Guide (2)
         :width: 80%
         :align: center
 
+Dense Displays
+==============
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/more_data.png
+        :width: 80%
+        :align: center
+
+How to iterate?
+===============
+
+    .. image:: ./_static/process_03.png
+        :width: 100%
+        :align: center
+
+Tools for everything, but no **dataviz REPL**.
+
+Or is there? Enter IPython Notebook, Pandas, the web.
+
+pyrepl
+======
+
+Let's take a look at "pulse traffic time series".
+
+.. image:: ./_static/pulse.png
+    :width: 60%
+    :align: center
+
+pandas
+======
+
+* dataframes
+* loading
+* aggregates
+* grouping
+* sorting
+* serializing
+* matplotlib
+* but, dataviz isn't "product ready"!
+
+Data my browser!
+================
+
+CONUNDRUM: Once I have some nice, clean, time series (or other) data rendering
+nicely in the IPython Notebook, how do I get it rendering nicely in the
+browser?
+
+Options
+=======
+
+* d3 bespoke viz: hardest, most flexible
+* nvd3 chart models: slightly easier, still very flexible
+* vincent/vega: easiest, relatively inflexible
+* (these aren't only options, but IMO best ones)
+
+d3-oriented Approach
+====================
+
+* iterate with Pandas and matplotlib
+* convert dataframe to JSON
+* load JSON with d3
+* use d3 for final cleaning
+* build scales / axes / labels from scratch
+* build interaction layer from scratch
+* for offline, use PhantomJS render
+
+d3
+==
+
+* selections
+* svg
+* scales
+* axes
+* data
+* joins
+
 Data
 ====
 
@@ -241,69 +326,6 @@ Data-Driven Documents
         :width: 80%
         :align: center
 
-Dense Displays
-==============
-
-.. rst-class:: spaced
-
-    .. image:: ./_static/more_data.png
-        :width: 80%
-        :align: center
-
-
-How to iterate?
-===============
-
-    .. image:: ./_static/process_03.png
-        :width: 100%
-        :align: center
-
-Tools for everything, but no **dataviz REPL**.
-
-Or is there? Enter IPython Notebook, Pandas, the web.
-
-Demo Time!
-=========
-
-.. rst-class:: spaced
-
-    .. image:: ./_static/authority_report.png
-        :width: 80%
-        :align: center
-
-Interesting IPyNB Things
-========================
-
-* IPython cell magics (``%%html``, ``%%javascript``)
-* cdnjs
-* display framework
-* new widget / channel communication framework
-* ipython locate profile
-
-My Tools
-========
-
-    =========== ===================================
-    Step        Tools
-    =========== ===================================
-    acquire     pymongo, solr, apache pig
-    parse       python stdlib, custom tools
-    filter      ipython notebook, listcomps
-    mine        pandas
-    represent   matplotlib, vincent, nvd3
-    refine      d3, chrome inspector
-    interact    d3
-    =========== ===================================
-
-d3
-==
-
-* selections
-* svg
-* scales
-* axes
-* data
-* joins
 
 d3 scales
 =========
@@ -329,8 +351,8 @@ d3 scaling
 
 .. sourcecode:: javascript
 
-    x(4.5) // -> 
-    y.rangeBand() // ->
+    x(4.5) // -> 450
+    y.rangeBand() // -> 40
 
 d3 drawing
 ==========
@@ -348,18 +370,128 @@ d3 drawing
         .data(data)
         .enter()
             .append("svg:rect")
-                .attr("height", x)
-                .attr("x", y)
-                .attr("y", function(d) { return height - x(d); })
+                .attr("x", x)
+                .attr("height", y)
+                .attr("y", function(d) { return height - y(d); })
                 .attr("width", y.rangeBand());
 
-nvd3
-====
+Prototyping with d3
+===================
+
+I built a tool called "webrepl" for this.
+
+* HTML page with codemirror + emmet
+* shortcut that installs jquery, bootstrap, d3 on page
+* renders JavaScript code into preview iframe
+* Browser inspector lets me look into that frame
+
+What about my data?
+===================
+
+Need to convert Pandas DataFrame to JSON format of some sort.
+
+Typically: data and labels.
+
+Typically also a pain in the butt!
+
+nvd3 add-on
+===========
+
+* use canned nvd3 chart type
+* customize interaction layer atop
+
+nvd3 concepts
+=============
 
 * models
 * charts
 * tooltips
 * utilities
+
+nvd3 graphs
+===========
+
+.. figure:: /_static/nvd3_graphs.png
+    :width: 90%
+    :align: center
+
+nvd3 approach
+=============
+
+Assumes a certain data format, typically an array of dictionaries (series)
+
+.. sourcecode:: javascript
+
+    var data = [
+        {"key": "data",
+         "values": [
+            1, 2, 3, 4, 5
+         ]
+        }
+    ];
+
+The ``values`` array will become your chart series data -- can use your own
+structure there.
+
+Model is basically a pre-set of d3 scales, axes, labels, and data joins.
+
+nvd3 model
+==========
+
+.. sourcecode:: javascript
+
+    nv.addGraph(function() {
+        // build nvd3 chart model
+        var chart = nv.models.discreteBarChart()
+            .x(function(d, i) { return i })
+            .y(function(d) { return d })
+                .tooltips(true).showValues(true);
+
+        // plain d3 code to do data-document binding
+        d3.select('#chart svg').datum(data)
+            .transition().duration(500)
+                .call(chart);
+
+        // nv utility for refreshing graph based on window size
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+nvd3 benefit
+============
+
+Still supports full power of d3, but gives you a starting point
+
+.. figure:: /_static/nvd3_bar.png
+    :width: 90%
+    :align: center
+
+What is Vega?
+=============
+
+* Vega is a **declarative** abstraction for dataviz.
+* Essentially, a domain-specific language written in JSON.
+* Outputs to d3 and also HTML5 Canvas.
+
+.. figure:: /_static/vega_website.png
+    :width: 60%
+    :align: center
+
+What is Vincent?
+================
+
+* vincent is a Python library that "humanizes" vega.
+* use vincent inside IPyNB
+* export vega JSON from vincent objects
+* run vega JS library to parse JSON
+
+Vincent Graphs
+==============
+
+.. figure:: /_static/vincent_ipynb.png
+    :width: 100%
+    :align: center
 
 vincent
 =======
@@ -368,57 +500,43 @@ vincent
 * declarative visualizations
 * HTML canvas
 
-pandas
-======
+How does Vega work?
+===================
 
-* dataframes
-* loading
-* aggregates
-* grouping
-* sorting
-* serializing
-* matplotlib
+* vega runtime generates d3 instructions
+* for offline mode, use vg2png/vg2svg
 
-IPyNB
-=====
+My Tools
+========
+
+    =========== ===================================
+    Step        Tools
+    =========== ===================================
+    acquire     pymongo, solr, apache pig
+    parse       python stdlib, custom tools
+    filter      ipython notebook, listcomps
+    mine        pandas
+    represent   matplotlib, vincent, nvd3
+    refine      d3, chrome inspector
+    interact    d3
+    =========== ===================================
+
+Offline: I use Phantom to run full stack, including d3.
+
+Why is IPyNB so exciting?
+=========================
 
 * execution
 * display
 * saving / sharing
 * platform unification
 
-Three Use Cases
-===============
+New IPyNB dataviz utilities
+===========================
 
-* mine network referrers for trends (pixel data)
-* find outlier response times (API nginx logs)
-* compare real-time traffic (JSON query response)
-
-d3-oriented Approach
-====================
-
-* iterate with Pandas and matplotlib
-* convert dataframe to JSON
-* load JSON with d3
-* use d3 for final cleaning
-* build scales / axes / labels from scratch
-* build interaction layer from scratch
-* for offline, use PhantomJS render
-
-nvd3 add-on
-===========
-
-* use canned nvd3 chart type
-* customize interaction layer atop
-
-Vega-oriented Approach
-======================
-
-* use vincent inside IPyNB
-* get vega JSON into browser
-* use vega JS library to parse JSON
-* vega runtime generates d3 instructions
-* for offline mode, use vg2png/vg2svg
+* IPython cell magics (``%%html``, ``%%javascript``)
+* display framework
+* ipython locate profile for custom CSS/JS
 
 Future Nirvana
 ==============
@@ -426,8 +544,32 @@ Future Nirvana
 * edit data with Pandas in IPyNB
 * snapshot data as JSON cell
 * edit d3 / nvd3 code in ``%%javascript`` cell
-* use ``IPython.display`` to show d3 rendering result 
-* interactive rendering via ``IPython.kernel.comm``
+* use ``IPython.display`` to show d3 rendering result
+* vincent example leads the way here
+
+My Use Cases
+============
+
+* mine network referrers for trends
+* compare real-time traffic between publishers
+
+Authority Report
+================
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/authority_report.png
+        :width: 80%
+        :align: center
+
+Extra Time?
+===========
+
+Talk about new IPyNB comm capabilities.
+
+* Widget framework?
+* Python-to-JavaScript bridge via ``IPython.kernel.comm``?
+* IPython JavaScript API for cell reading?
 
 Type Into Browser
 =================
