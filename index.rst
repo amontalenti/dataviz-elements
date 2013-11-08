@@ -1,6 +1,6 @@
-====================
-Elements of Data Viz
-====================
+==============
+Rapid Data Viz
+==============
 
 Andrew Montalenti, CTO
 
@@ -10,22 +10,22 @@ Andrew Montalenti, CTO
         :width: 40%
         :align: right
 
-What is Parse.ly?
-=================
+What do we do?
+==============
 
-Analytics provider for large-scale content sites.
+.. image:: ./_static/parsely.png
+    :width: 90%
+    :align: center
 
-    .. image:: ./_static/banner_01.png
-        :align: center
-    .. image:: ./_static/banner_02.png
-        :align: center
-    .. image:: ./_static/banner_03.png
-        :align: center
-    .. image:: ./_static/banner_04.png
-        :align: center
+Parse.ly customers
+==================
 
-Why does does online media need visualization?
-==============================================
+.. figure:: /_static/logos.png
+    :width: 90%
+    :align: center
+
+Is online media special?
+========================
 
 Websites have a variety of interesting "first-party" metrics:
 
@@ -50,10 +50,8 @@ Third-party metrics emerging
     :width: 60%
     :align: center
 
-Is online journalism special?
+What about online journalism?
 =============================
-
-Yes.
 
 * **Short Shelf Life**: average content shelf-life <48 hours
 * **High Frequency Publishing**: 1000's posts per day
@@ -72,16 +70,16 @@ Time series data
 .. image:: ./_static/sparklines_stacked.png
     :align: center
 
-Summary data
-============
+Summary breakdowns
+==================
 
 .. rst-class:: spaced
 
     .. image:: ./_static/summary_viz.png
         :align: center
 
-Benchmark data
-==============
+Benchmark statistics
+====================
 
 .. rst-class:: spaced
 
@@ -96,6 +94,29 @@ Information radiators
     .. image:: ./_static/glimpse.png
         :width: 100%
         :align: center
+
+Contextual overlays
+===================
+
+.. rst-class:: spaced
+
+    .. image:: ./_static/extension.png
+        :width: 100%
+        :align: center
+
+How do we do it?
+================
+
+.. image:: ./_static/oss_logos.png
+    :width: 90%
+    :align: center
+
+Parse.ly careers
+================
+
+.. figure:: /_static/team_jobs.png
+    :width: 70%
+    :align: center
 
 Data Visualization Theory
 =========================
@@ -250,6 +271,15 @@ Demo Time!
         :width: 80%
         :align: center
 
+Interesting IPyNB Things
+========================
+
+* IPython cell magics (``%%html``, ``%%javascript``)
+* cdnjs
+* display framework
+* new widget / channel communication framework
+* ipython locate profile
+
 My Tools
 ========
 
@@ -260,19 +290,10 @@ My Tools
     parse       python stdlib, custom tools
     filter      ipython notebook, listcomps, pandas
     mine        pandas
-    represent   matplotlib, vincent, d3
+    represent   matplotlib, vincent, d3, nvd3
     refine      d3, chrome inspector
     interact    d3
     =========== ===================================
-
-"Big" Data
-==========
-
-.. rst-class:: spaced
-
-    .. image:: ./_static/big_data_viz.png
-        :width: 80%
-        :align: center
 
 Type Into Browser
 =================
@@ -281,8 +302,8 @@ Type Into Browser
 
     **Links:**
 
-    - bit.ly/becamp2013
-    - parse.ly
+    - parse.ly/jobs
+    - parse.ly/authority
 
     **Contacts:**
 
