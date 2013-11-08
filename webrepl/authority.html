@@ -4,9 +4,9 @@
   <title>Authority Pre-Prod</title>
   <link rel="stylesheet" href="css/lib/bootstrap.css" />
   <link rel="stylesheet" href="css/lib/bootstrap-responsive.css" />
-  <script src="js/lib/bootstrap.js"></script>
-  <script src="js/lib/d3.js"></script>
   <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/bootstrap.js"></script>
+  <script src="js/lib/d3.v3.js"></script>
     <style type="text/css">
     body {
     font: 10px sans-serif;
@@ -30,10 +30,6 @@
     </style>
   <script>
 jQuery(function() { 
-    //var data  = d3.range(50);
-    //var data  = d3.range(50).map(function() { return Math.random() });
-    //var data  = d3.range(50).map(function(x) { return x*x });
-    //var data  = d3.range(30).map(function(x) { return x*x*x });
 
     data = [25912706, 166264955, 348730403, 370346256, 923561987];
     labels = ['rss readers', 'aggregators', 'social networks', 'other news sites', 'search engines'];
@@ -144,14 +140,14 @@ function hbar(data, labels, width, height, elementId) {
         .text(function(d) { return d3.format(".1%")(normed(d)); } );
 
     chart.selectAll("text.label")
-        .data(labels)
+    .data(d3.zip(labels, data))
     .enter().append("svg:text")
         .attr("class", "label")
         .attr("x", w + offset)
-        .attr("y", function(d) { return y(d) + offset })
+        .attr("y", function(d) { return y(d[1]) + offset; })
         .attr("height", y.rangeBand())
         .attr("text-anchor", "left")
-        .text(function(d) { return d; } );
+        .text(function(d) { return d[0]; } );
 } // hbar    
   </script>
 </head>
