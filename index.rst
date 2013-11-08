@@ -669,10 +669,45 @@ Type Into Browser
 
     **Contacts:**
 
-    - @amontalenti
-    - @parsely
+    - @amontalenti / @parsely
 
-    **Questions?**
+   Questions? `Tweet me`_!
+
+.. _Tweet me: http://twitter.com/amontalenti
+
+This deck
+=========
+
+* `slides`_
+* `notes`_
+* `code`_
+
+.. _slides: http://pixelmonkey.org/pub/dataviz-elements
+.. _notes: http://pixelmonkey.org/pub/dataviz-elements/notes
+.. _code: http://bit.ly/dataviz-elements-code
+
+Other resources
+===============
+
+* `d3.js library`_ 
+* `nvd3 library`_
+* `nvd3 live code examples`_
+* `trifacta's vega library`_
+* `vega live editor`_
+* `vincent library`_
+* `tributary simple bars`_
+* `codemirror`_ 
+* `emmet`_
+
+.. _d3.js library: http://d3js.org
+.. _nvd3 library: http://nvd3.org/
+.. _nvd3 live code examples: http://nvd3.org/livecode/
+.. _trifacta's vega library: https://github.com/trifacta/vega
+.. _vega live editor: http://trifacta.github.io/vega/editor/
+.. _vincent library: https://github.com/wrobstory/vincent
+.. _tributary simple bars: http://tributary.io/inlet/7376344
+.. _codemirror: http://codemirror.net/
+.. _emmet: http://emmet.io/
 
 
 .. ifnotslides::
