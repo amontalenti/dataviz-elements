@@ -288,12 +288,146 @@ My Tools
     =========== ===================================
     acquire     pymongo, solr, apache pig
     parse       python stdlib, custom tools
-    filter      ipython notebook, listcomps, pandas
+    filter      ipython notebook, listcomps
     mine        pandas
-    represent   matplotlib, vincent, d3, nvd3
+    represent   matplotlib, vincent, nvd3
     refine      d3, chrome inspector
     interact    d3
     =========== ===================================
+
+d3
+==
+
+* selections
+* svg
+* scales
+* axes
+* data
+* joins
+
+d3 scales
+=========
+
+.. sourcecode:: javascript
+
+    var data = [1, 2, 3, 4, 5];
+
+    var width = 500;
+    var height = 200;
+
+    var x = d3.scale
+                .linear()
+                .domain([0, d3.max(data)])
+                .range([0, width]);
+    var y = d3.scale
+                .ordinal()
+                .domain(data)
+                .rangeBands([0, height]);
+
+d3 scaling
+==========
+
+.. sourcecode:: javascript
+
+    x(4.5) // -> 
+    y.rangeBand() // ->
+
+d3 drawing
+==========
+
+.. sourcecode:: javascript
+
+    var chart = d3.select("#container")
+      .append("svg")
+        .attr("class", "chart")
+        .attr("width", width)
+        .attr("height", height)
+      .append("svg:g");
+    
+    chart.selectAll("rect")
+        .data(data)
+        .enter()
+            .append("svg:rect")
+                .attr("height", x)
+                .attr("x", y)
+                .attr("y", function(d) { return height - x(d); })
+                .attr("width", y.rangeBand());
+
+nvd3
+====
+
+* models
+* charts
+* tooltips
+* utilities
+
+vincent
+=======
+
+* vega (JSON)
+* declarative visualizations
+* HTML canvas
+
+pandas
+======
+
+* dataframes
+* loading
+* aggregates
+* grouping
+* sorting
+* serializing
+* matplotlib
+
+IPyNB
+=====
+
+* execution
+* display
+* saving / sharing
+* platform unification
+
+Three Use Cases
+===============
+
+* mine network referrers for trends (pixel data)
+* find outlier response times (API nginx logs)
+* compare real-time traffic (JSON query response)
+
+d3-oriented Approach
+====================
+
+* iterate with Pandas and matplotlib
+* convert dataframe to JSON
+* load JSON with d3
+* use d3 for final cleaning
+* build scales / axes / labels from scratch
+* build interaction layer from scratch
+* for offline, use PhantomJS render
+
+nvd3 add-on
+===========
+
+* use canned nvd3 chart type
+* customize interaction layer atop
+
+Vega-oriented Approach
+======================
+
+* use vincent inside IPyNB
+* get vega JSON into browser
+* use vega JS library to parse JSON
+* vega runtime generates d3 instructions
+* for offline mode, use vg2png/vg2svg
+
+Future Nirvana
+==============
+
+* edit data with Pandas in IPyNB
+* snapshot data as JSON cell
+* edit d3 / nvd3 code in ``%%javascript`` cell
+* use ``IPython.display`` to show d3 rendering result 
+* interactive rendering via ``IPython.kernel.comm``
 
 Type Into Browser
 =================
